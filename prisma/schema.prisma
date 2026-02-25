@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int            @id @default(autoincrement())
+  employeeId   String?        @unique              // รหัสพนักงาน เช่น EMP001
+  name         String
+  email        String         @unique
+  password     String
+  role         String         @default("employee") // employee | admin
+  department   String
+  position     String
+  gender       String?                             // male | female | other
+  phone        String?                             // เบอร์โทร
+  birthDate    DateTime?                           // วันเกิด
+  hireDate     DateTime?                           // วันเริ่มงาน
+  address      String?                             // ที่อยู่
+  isActive     Boolean        @default(true)       // ยังทำงานอยู่
+  createdAt    DateTime       @default(now())
+  leaveRequests LeaveRequest[]
+}
+
+model LeaveType {
+  id           Int            @id @default(autoincrement())
+  name         String
+  daysAllowed  Int
+  leaveRequests LeaveRequest[]
+}
+
+model LeaveRequest {
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+  leaveTypeId Int
+  leaveType   LeaveType @relation(fields: [leaveTypeId], references: [id])
+  startDate   DateTime
+  endDate     DateTime
+  days        Int
+  reason      String
+  status      String    @default("pending") // pending | approved | rejected
+  note        String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
