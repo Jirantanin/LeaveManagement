@@ -29,3 +29,8 @@ prisma/dev.db-journal
 
 # Claude memory
 .claude/
+
+# Cypress artifacts
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/

@@ -11,7 +11,9 @@
     "start": "node .output/server/index.mjs",
     "db:push": "prisma db push",
     "db:seed": "node prisma/seed.cjs",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "engines": {
     "node": ">=16"
@@ -29,6 +31,7 @@
     "prisma": "^5.1.1",
     "tailwindcss": "^3.3.2",
     "@types/bcryptjs": "^2.4.2",
-    "@types/jsonwebtoken": "^9.0.2"
+    "@types/jsonwebtoken": "^9.0.2",
+    "cypress": "^13.17.0"
   }
 }
