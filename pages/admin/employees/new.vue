@@ -47,7 +47,7 @@
             <label class="label">แผนก <span class="text-red-500">*</span></label>
             <select v-model="form.department" required class="input" @change="form.position = ''">
               <option value="">-- เลือกแผนก --</option>
-              <option v-for="d in departments" :key="d" :value="d">{{ d }}</option>
+              <option v-for="d in DEPARTMENTS" :key="d" :value="d">{{ d }}</option>
             </select>
           </div>
           <div>
@@ -75,7 +75,7 @@
             <label class="label">เพศ</label>
             <select v-model="form.gender" class="input">
               <option value="">-- ไม่ระบุ --</option>
-              <option v-for="g in genders" :key="g.value" :value="g.value">{{ g.label }}</option>
+              <option v-for="g in GENDERS" :key="g.value" :value="g.value">{{ g.label }}</option>
             </select>
           </div>
           <div>
@@ -116,10 +116,11 @@
 </template>
 
 <script setup lang="ts">
+
 definePageMeta({ layout: 'admin' })
 
 const { apiFetch, loadFromStorage, user } = useAuth()
-const { departments, genders, POSITIONS } = await import('~/composables/useEmployeeOptions')
+const { DEPARTMENTS, GENDERS, POSITIONS } = await import('~/composables/useEmployeeOptions')
 
 const form = reactive({
   employeeId: '', name: '', email: '', password: '',
