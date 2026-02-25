@@ -8,9 +8,13 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "start": "node .output/server/index.mjs",
     "db:push": "prisma db push",
     "db:seed": "node prisma/seed.cjs",
     "db:studio": "prisma studio"
+  },
+  "engines": {
+    "node": ">=16"
   },
   "dependencies": {
     "nuxt": "3.4.3",
